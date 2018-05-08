@@ -1,0 +1,73 @@
+<div class="col-md-12">
+    <button class="btn btn-success" (click)="abrirModal()">Novo aluno</button>
+    <br/>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Curso</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let aluno of alunos">
+                        <td>{{aluno.nome}}</td>
+                        <td>{{aluno.idade}}</td>
+                        <td>{{aluno.curso}}</td>
+                        <td>
+                            <button class="btn btn-warning" (click)="prepararParaEditar(aluno.id)">editar</button>
+                            <button class="btn btn-danger" (click)="excluir(aluno.id)">excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo Aluno</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" name="nome" [(ngModel)]="aluno.nome">
+                        </div>
+                        <div class="form-group">
+                            <label>Idade</label>
+                            <input type="number" class="form-control" name="idade" [(ngModel)]="aluno.idade">
+                        </div>
+                        <div class="form-group">
+                            <label>Curso</label>
+                            <input type="text" class="form-control" name="curso" [(ngModel)]="aluno.curso">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" *ngIf="aluno.id" (click)="editar()" class="btn btn-primary">editar</button>
+                    <button type="button" *ngIf="!aluno.id" (click)="salvar()" class="btn btn-primary">salvar</button>
+                    <button type="button" (click)="fecharModal()" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
