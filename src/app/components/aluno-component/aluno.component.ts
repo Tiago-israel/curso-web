@@ -1,6 +1,11 @@
+import { Component, OnInit } from '@angular/core';
 import { Aluno } from './../../models/aluno.model';
 import { AlunoService } from './../../services/aluno.service';
-import { Component, OnInit } from '@angular/core';
+
+export class Palavra{
+    resposta:string;
+    idhtml : number;
+}
 
 declare var $: any;
 @Component({
@@ -13,11 +18,32 @@ export class AlunoComponent implements OnInit {
     public alunos: Aluno[] = [];
     public aluno: Aluno = new Aluno();
 
-    constructor(private alunoService: AlunoService) {
+    matriz: Palavra[][] = [];
 
+    constructor(private alunoService: AlunoService) {
+        let id = 0;
+        for (let i = 0; i < 10; i++) {
+            this.matriz[i] = [];
+            for (let j = 0; j < 10; j++) {
+                id++;
+                let palavra = new Palavra();
+                palavra.idhtml = id;
+                this.matriz[i][j] = palavra;
+            }
+        }
+    }
+
+    mudarcor(id){
+        debugger
+        $(`#${id}`).css("background","yellow");
+    }
+
+    mostrarMatriz(){
+        console.log(this.matriz);
     }
 
     ngOnInit(): void {
+        console.log(this.matriz);
         this.buscarAlunos();
     }
 
