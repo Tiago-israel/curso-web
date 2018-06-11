@@ -4,6 +4,8 @@ import { AlunoService } from './../../services/aluno.service';
 
 export class Palavra{
     resposta:string;
+    aleatorio : boolean = true;
+    letra : string;
     idhtml : number;
 }
 
@@ -32,10 +34,25 @@ export class AlunoComponent implements OnInit {
             }
         }
     }
+    
+
+    mudarStatus(i,j){
+        this.matriz[i][j].aleatorio = false;
+    }
 
     mudarcor(id){
-        debugger
         $(`#${id}`).css("background","yellow");
+    }
+
+    preecherMatriz(){
+        this.matriz.forEach(x => {
+            x.forEach(y => {
+                if(!y.letra){
+                    y.letra = String.fromCharCode(Math.floor(Math.random()*90)+65);
+                }
+            })
+        })
+       
     }
 
     mostrarMatriz(){

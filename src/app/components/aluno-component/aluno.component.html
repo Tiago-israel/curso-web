@@ -4,9 +4,12 @@
         <tbody>
             <tr *ngFor="let linha of matriz; let i = index;">
                 <td *ngFor="let coluna of linha; let j = index;">
-                    <input class="letra"  [id]="matriz[i][j].idhtml" (click)="mudarcor(matriz[i][j].idhtml)" maxlength="1" name="matriz[]"  [(ngModel)]="matriz[i][j].letra" />
+                    <input class="letra"  [id]="matriz[i][j].idhtml" (click)="mudarStatus(i,j)" maxlength="1" name="matriz[]"  [(ngModel)]="matriz[i][j].letra" />
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+<div>
+    <button (click)="preecherMatriz()">Finalizar</button>
 </div>
